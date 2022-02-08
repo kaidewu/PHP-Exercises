@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Instalación de otros programas. PHP. Bartolomé Sintes Marco. www.mclibre.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../varios/php.css" title="mclibre">
+  <link rel="icon" href="../varios/favicon.svg">
+</head>
+
+<body>
+  <h1>Instalación de otros programas</h1>
+
+  <nav>
+    <p>
+      <a href="../index.html"><img src="../varios/iconos/icono-php.svg" alt="Índice de PHP" title="Índice de PHP" width="48" height="48"></a>
+      <a href="#"><img src="../varios/iconos/icono-arrow-circle-up.svg" alt="Principio de la página" title="Principio de la página" width="36" height="36"></a>
+    </p>
+
+    <div class="toc">
+      <h2>Otros programas</h2>
+
+      <ul>
+        <li><a href="#ff-html-validator">Html Validator</a></li>
+        <li><a href="#editor-texto">Notepad++</a>
+          <ul>
+            <li><a href="#notepad-hex-editor">HEX-Editor</a></li>
+            <li><a href="#notepad-modificar-juego-caracteres">Modificar juego caracteres</a></li>
+          </ul>
+        </li>
+        <li><a href="#expresiones-regulares">Expresiones regulares</a></li>
+        <li><a href="#editor-po">Editor de archivos .po</a></li>
+        <li><a href="#mysql">Utilidades para MySQL</a></li>
+        <li><a href="#sqlite">Utilidades para SQLite</a></li>
+        <li><a href="#debugger">Debugger para PHP</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <p>Además de un paquete WAMP como XAMPP y un editor como Visual Studio Code, es conveniente instalar otros programas:</p>
+
+  <section id="ff-html-validator">
+    <h3>Extensión Html Validator</h3>
+
+    <p><a href="http://users.skynet.be/mgueury/mozilla/">Html Validator</a> añade a Firefox una pestaña en las herramientas de Desarrollador Web con herramientas útiles para el desarrollo de páginas web. Html Validator está incluida en <a href="https://addons.mozilla.org/es/firefox/addon/html-validator/">Firefox Add-ons</a>.</p>
+
+    <p>Actualmente (noviembre de 2021), la versión más reciente de Html Validator para Firefox es la versión 0.9.9.5, publicada el 4 de agosto de 2021. También está <a href="https://www.mclibre.org/consultar/informatica/lecciones/gc-extensiones.html#gc-extensiones-html-validator">disponible para Chrome</a>.</p>
+
+    <p>En la lección <a href="https://www.mclibre.org/consultar/informatica/lecciones/ff-extensiones.html#ff-html-validator">Complementos de Firefox</a> se comenta el uso de esta extensión en Firefox y en la lección <a href="https://www.mclibre.org/consultar/informatica/lecciones/gc-extensiones.html#gc-extensiones-html-validator">Extensiones de Google Chrome</a> se comenta el uso de esta herramienta en Google Chrome..</p>
+  </section>
+
+  <section id="editor-texto">
+    <h2>Editor de texto sin formato: Notepad++</h2>
+
+    <p><a href="https://notepad-plus-plus.org/">Notepad++</a> es un editor de texto sin formato que reconoce multitud de sintaxis de lenguajes de programación y permite trabajar con diferentes codificaciones (UTF-8, etc.).</p>
+
+    <p>Notepad++ está disponible en versiones para 32 bits y para 64 bits.</p>
+
+    <p>Actualmente (noviembre de 2021), la versión más reciente es la versión Notepad++ 8.1.9, publicada el 21 de octubre de 2021.</p>
+
+    <p>En <a href="https://www.cdlibre.org/">cdlibre.org</a> hay una sección dedicada a <a href="https://www.cdlibre.org/consultar/catalogo/Programacion_Editores.html">editores de programación</a>, desde la que se pueden descargar las últimas versiones disponibles para 64 bits.</p>
+
+    <section id="notepad-hex-editor">
+      <h3>Plug-in HEX-Editor de Notepad++</h3>
+
+      <p>El plug-in HEX-Editor permite ver y editar todos los bytes de un fichero.</p>
+
+      <p>El plug-in Hex-Editor original se encuentra en el <a href="https://sourceforge.net/projects/npp-plugins/files/Hex%20Editor/">repositorio de plug-ins de SourceForge</a>, pero El administrador de plug-ins de Notepad++ utiliza el <i>fork</i> <a href="https://github.com/chcg/NPP_HexEdit">HexEdit</a> que se encuentra en GitHub.</p>
+
+      <p>Actualmente (noviembre de 2021), la versión más reciente es la versión Hex-Editor 0.9.10, publicada el 29 de agosto de 2021.</p>
+
+      <p>Para instalar HEX-Editor:</p>
+      <ol>
+        <li>Abra el menú  <span class="soft-menu">Plugins &gt; Administrar Plugins...</span>
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-1.png" alt="Notepad++ HEX-Editor" width="1024" height="210">
+          </p>
+        </li>
+        <li>En el Administrador de plug-ins marque la casilla correspondiente a Hex-Editor (puede usar el cuadro de búsqueda) haga clic en Instalar.
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-2.png" alt="Notepad++ HEX-Editor" width="1024" height="380">
+          </p>
+        </li>
+        <li>La instalación requiere reiniciar Notepad++:
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-3.png" alt="Notepad++ HEX-Editor" width="365" height="180">
+          </p>
+        </li>
+        <li>Tras el reinicio, compruebe que HEX-Editor está disponible a través del menú <span class="soft-menu">Plugins &gt; HEX-Editor</span>
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-4.png" alt="Notepad++ HEX-Editor" width="1120" height="250">
+          </p>
+        </li>
+      </ol>
+
+      <p>Para ver los códigos hexadecimales de un fichero:</p>
+      <ol>
+        <li>Abra en Notepad++ el fichero.
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-11.png" alt="Notepad++ HEX-Editor" width="1024" height="220">
+          </p>
+        </li>
+        <li>Elija la opción de menú <span class="soft-menu">Plugins &gt; HEX-Editor &gt; View in HEX</span>
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-12.png" alt="Notepad++ HEX-Editor" width="1115" height="235">
+          </p>
+        </li>
+        <li>La pantalla se dividirá en dos partes: en la parte izquierda podemos ver los códigos hexadecimales y en la parte derecha el texto
+          <p class="captura">
+            <img src="../img/notepad/notepad-hex-editor-13.png" alt="Notepad++ HEX-Editor" width="1024" height="270">
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="notepad-modificar-juego-caracteres">
+      <h3>Modificar juego de caracteres de un fichero</h3>
+
+      <p>Notepad++ permite cambiar el juego de caracteres de un fichero mediante el menú <span class="soft-menu">Codificación</span>. En particular, se puede eliminar la marca de orden de bytes de un archivo UTF-8 mediante el menú <span class="soft-menu">Codificación &gt; Convertir a UTF-8 sin BOM</span>:</p>
+
+      <p class="captura"><img src="../img/notepad/notepad-utf8-bom-quitar.png" alt="Quitar BOM con Notepad++" width="1024" height="320"></p>
+    </section>
+  </section>
+
+  <section id="expresiones-regulares">
+    <h2>Editor de expresiones regulares</h2>
+
+    <p>En la lección <a href="../lecciones/php-expresiones-regulares.html#practicar">Expresiones regulares</a> se indican varias páginas web en la que se pueden practicar expresiones regulares.</p>
+
+    <hr class="corta">
+
+    <p><strong>Regular Expression Editor</strong> es un editor de expresiones regulares.</p>
+
+    <p>Desde noviembre de 2015 la página web del programa ya no está disponible (ni siquiera la de la empresa que lo publicó). La última versión publicada fue <a href="https://www.cdlibre.org/descargar/soft/r/RegExpEditor_1-4-0.exe">versión Regular Expression Editor 1.4.0</a>, publicada el 13 de marzo de 2006.</p>
+
+    <p>En <a href="https://www.cdlibre.org/">cdlibre.org</a> hay una sección dedicada a <a href="https://www.cdlibre.org/consultar/catalogo/Programacion_Expresiones-regulares.html">expresiones regulares</a>, desde la que se puede descargar este y otros programas similares.</p>
+
+    <section id="regular-expression-editor">
+      <h3>Utilizar Regular Expression Editor</h3>
+
+      <p>Regular Expression Editor permite comprobar expresiones regulares compatibles con Perl. La ventana del programa contiene tres cajas de texto:</p>
+      <ul>
+        <li>la caja de texto en la el usuario se escribe el patrón (no hay que escribir los delimitadores)</li>
+        <li>la caja de texto en la que el usuario escribe la cadena a comparar con el patrón</li>
+        <li>la caja de texto que muestra el resultado de la comparación</li>
+      </ul>
+
+      <p class="captura">
+        <img src="../img/regexped/regexped-1.png" alt="Regular Expression Editor - Ventana" width="600" height="540">
+      </p>
+
+      <p>En caso de que la cadena coincida con el patrón, en la caja de texto del resultado se muestra la coincidencia:</p>
+
+      <p class="captura">
+        <img src="../img/regexped/regexped-2.png" alt="Regular Expression Editor - Coincidencia" width="600" height="540">
+      </p>
+
+      <p>En caso de que la cadena no coincida con el patrón, en la caja de texto del resultado no se muestra nada:</p>
+
+      <p class="captura">
+        <img src="../img/regexped/regexped-3.png" alt="Regular Expression Editor - No coincidencia" width="600" height="540">
+      </p>
+
+      <p>Marcar la casilla "Ignore case" es equivalente a incluir el modificador "i" (no distinguir entre mayúsculas y minúsculas).</p>
+
+      <p class="captura">
+        <img src="../img/regexped/regexped-4.png" alt="Regular Expression Editor - Modificador i" width="600" height="540">
+      </p>
+    </section>
+  </section>
+
+  <section id="editor-po">
+    <h2>Editor de archivos .po</h2>
+
+    <p><a href="https://poedit.net/">Poedit</a> es un programa para la creación y edición de ficheros .po.</p>
+
+    <p>La última versión libre publicada fue la <a href="https://sourceforge.net/projects/poedit/files/poedit/1.5/poedit-1.5.7-setup.exe/download">versión Poedit 1.5.7</a>, publicada el 5 de julio de 2013. Las versiones posteriores ya no son libres, aunque siguen siendo gratuitas (con algunas características exclusivas de la versión de pago). Actualmente (noviembre de 2021), la versión más reciente es la <a href="https://download.poedit.net/Poedit-3.0.6387-setup.exe">versión Poedit 3.0</a>, publicada el 4 de junio de 2021.</p>
+
+    <p>En <a href="https://www.cdlibre.org/">cdlibre.org</a> hay una sección dedicada a <a href="https://www.cdlibre.org/consultar/catalogo/Programacion_Traduccion.html">herramientas de traducción</a>, desde la que se puede descargar la última versión libre disponible.</p>
+  </section>
+
+  <section id="mysql">
+    <h2>Utilidades para MySQL</h2>
+
+    <p><a href="https://www.mysql.com/">MySQL</a> ofrece <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a> para el diseño de bases de datos.</p>
+
+    <p>Actualmente (noviembre de 2021), la versión más reciente es la versión MySQL Workbench 8.0.27, publicada el 19 de octubre de 2021.</p>
+
+    <p>En <a href="https://www.cdlibre.org/">cdlibre.org</a> hay una sección dedicada a <a href="https://www.cdlibre.org/consultar/catalogo/Bases-de-datos_MySQL.html">MySQL</a>, desde la que se puede descargar las últimas versiones disponibles.</p>
+  </section>
+
+  <section id="sqlite">
+    <h2>Utilidades para SQLite</h2>
+
+    <p><a href="https://sqlitebrowser.org/">DB Browser for SQLite</a> permite administrar las bases de datos creadas con SQLite. La última versión disponible actualmente (noviembre de 2021) es la versión DB Browser for SQLite 3.12.2 (64 bits), publicada el 17 de mayo de 2021.</p>
+
+    <p><a href="https://sqlectron.github.io/">SQLECTRON </a> permite administrar las bases de datos creadas con SQLite. La última versión disponible actualmente (noviembre de 2021) es la versión SQLECTRON 1.37.1, publicada el 16 de agosto de 2021. Aunque en marzo de 2018 el autor <a href="https://github.com/sqlectron/sqlectron-gui/issues/433">anunció</a> que dejaba de desarrollar este programa, se han seguido publicando nuevas versiones.</p>
+
+    <p>En <a href="https://www.cdlibre.org/">cdlibre.org</a> hay una sección dedicada a <a href="https://www.cdlibre.org/consultar/catalogo/Bases-de-datos_Otros.html">Bases de datos</a>, desde la que se puede descargar las últimas versiones disponibles.</p>
+  </section>
+
+  <section id="debugger">
+    <h2>Debugger para PHP</h2>
+
+    <p class="incompleto">Por escribir</p>
+    <ul>
+      <li>Debuggers:
+        <a href="https://xdebug.org/">Xdebug</a>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="ultmod">Última modificación de esta página: 9 de noviembre de 2021</p>
+
+    <p class="licencia">
+      <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES"><img src="../varios/iconos/icono-cc-by-sa.svg" alt="Licencia Creative Commons" title="Licencia Creative Commons BY-SA" width="120" height="42"></a><br>
+      Esta página forma parte del curso <strong><a href="https://www.mclibre.org/consultar/php/">Programación web en PHP</a></strong> por <a href="https://www.mclibre.org/" rel="author">Bartolomé Sintes Marco</a><br>
+      que se distribuye bajo una <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES">Licencia Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)</a>.
+    </p>
+  </footer>
+</body>
+</html>
