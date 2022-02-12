@@ -4,8 +4,13 @@
  *
  * @author Kaide Wu
  */
-
-session_start("simon")
+session_name("simon");
+session_start();
+if (!isset($_SESSION["aciertos"]) || !isset($_SESSION["fallos"])){
+  $_SESSION["aciertos"] = 0;
+  $_SESSION["fallos"] = 0;
+  $_SESSION["numero"] = rand(1, 4);
+}
 
 
 ?>
@@ -28,10 +33,7 @@ session_start("simon")
 
 <?php
 
-  $numRandom = rand(1, 4);
-  $RandomColor = "r$numRandom";
-  print " <p> $RandomColor </p>"
-  print " <p>Haga clic en este color: <img src=\"img/r3.svg\" alt=\"Color\" width=\"30\" height=\"30\" style=\"vertical-align: middle\"></p>\n";
+  print " <p>Haga clic en este color: <img src=\"img/r$_SESSION[numero].svg\" alt=\"Color\" width=\"30\" height=\"30\" style=\"vertical-align: middle\"></p>\n";
   print "\n";
   print "  <form action=\"simon-2.php\">\n";
   print "    <p>\n";
@@ -50,13 +52,10 @@ session_start("simon")
   print "      </button>\n";
   print "    </p>\n";
   print "\n";
-  print "    <p><strong>Aciertos</strong>: 1</p>\n";
+  print "    <p><strong>Aciertos</strong>: $_SESSION[aciertos]</p>\n";
   print "\n";
-  print "    <p><strong>Fallos</strong>: 1</p>\n";
+  print "    <p><strong>Fallos</strong>: $_SESSION[fallos]</p>\n";
   print "\n";
-  print "    <p><input type=\"submit\" name=\"eleccion\" value=\"Reiniciar\"></p>\n";
-  print "  </form>\n";
-
 
 ?>
     <p><input type="submit" name="eleccion" value="Reiniciar"></p>
