@@ -2,7 +2,7 @@
 /**
  * Ordena cuadrados - ordena-cuadrados-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
   <title>
     Ordena cuadrados (Formulario).
     Con formularios.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -50,7 +50,7 @@
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

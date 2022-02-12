@@ -2,7 +2,7 @@
 /**
  * Cartas iguales - cartas-iguales.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 ?>
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
   <title>
     Cartas iguales.
     Sin formularios.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -29,7 +29,7 @@ print "<p class=\"aviso\">Ejercicio incompleto</p>\n";
 
 ?>
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

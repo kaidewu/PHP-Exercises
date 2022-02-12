@@ -2,7 +2,7 @@
 /**
  * Simon 2 - simon-2.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 
 print "<p class=\"aviso\">Ejercicio incompleto</p>\n";
