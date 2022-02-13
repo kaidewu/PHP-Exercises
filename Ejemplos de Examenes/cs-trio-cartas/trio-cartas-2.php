@@ -2,7 +2,7 @@
 /**
  * Trío de cartas - trio-cartas-2.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 session_name("triocartas");
 session_start();

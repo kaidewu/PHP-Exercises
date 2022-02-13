@@ -2,11 +2,14 @@
 /**
  * Tabla con casillas de verificación (Formulario) - matrices-2-1-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
-
-print "<!-- Ejercicio incompleto -->\n";
+session_name("matrices-2-1-1");
+session_start();
+if (!isset($_SESSION["lista"])){
+  $_SESSION["lista"] = [];
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +19,7 @@ print "<!-- Ejercicio incompleto -->\n";
   <title>
     Tabla de una fila con casillas de verificación (Formulario).
     Matrices (2). Sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -32,8 +35,11 @@ print "<!-- Ejercicio incompleto -->\n";
       <tbody>
         <tr>
 <?php
-
-print "/* Ejercicio incompleto */\n";
+$_SESION["numRandom"] = rand(1, 20);
+for ($i = 1; $i < $_SESION["numRandom"]; $i++) {
+  print "        <td><label><input type=\"checkbox\" name=\"c[$i]\"> $i</label></td>\n";
+  $_SESION["lista"] = $i;
+}
 
 ?>
         </tr>
@@ -47,7 +53,7 @@ print "/* Ejercicio incompleto */\n";
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

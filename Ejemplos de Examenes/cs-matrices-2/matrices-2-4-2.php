@@ -2,7 +2,7 @@
 /**
  * Hombres y mujeres (Resultado) - matrices-2-4-2.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
 
@@ -16,7 +16,7 @@ print "<!-- Ejercicio incompleto -->\n";
   <title>
     Hombres y mujeres (Resultado).
     Matrices (2). Sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -34,7 +34,7 @@ print "/* Ejercicio incompleto */\n";
   <p><a href="matrices-2-4-1.php">Volver al formulario.</a></p>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

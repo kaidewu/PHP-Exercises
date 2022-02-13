@@ -2,7 +2,7 @@
 /**
  * Tabla con casillas de verificación (Formulario) - matrices-2-5-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
 
@@ -16,7 +16,7 @@ print "<!-- Ejercicio incompleto -->\n";
   <title>
     Tabla cuadrada con casillas de verificación (Formulario).
     Matrices (2). Sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -46,7 +46,7 @@ print "/* Ejercicio incompleto */\n";
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

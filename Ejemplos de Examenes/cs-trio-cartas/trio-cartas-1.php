@@ -2,7 +2,7 @@
 /**
  * Trío de cartas - trio-cartas-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 session_name("triocartas");
 session_start();
@@ -21,7 +21,7 @@ if (!isset($_SESSION["cambios"])){
   <title>
     Trío de cartas.
     Con sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -63,7 +63,7 @@ if (($_SESSION["cartas1"] == $_SESSION["cartas2"]) && ($_SESSION["cartas2"] == $
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>
