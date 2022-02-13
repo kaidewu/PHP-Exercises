@@ -7,10 +7,27 @@
  */
 session_name("matrices-2-1-1");
 session_start();
-if (!isset($_SESSION["lista"])){
-  header("Location: trio-cartas-1.php");
+if (!isset($_SESSION["comprobacion"])){
+  session_destroy();
+  header("Location: matrices-2-1-1.php");
   exit;
 }
+
+ # Funcion recoge los datos
+ function recoge($var, $m = "")
+ {
+       if (!isset($_REQUEST[$var])) {
+           $tmp = (is_array($m)) ? [] : "";
+       } elseif (!is_array($_REQUEST[$var])) {
+           $tmp = trim(htmlspecialchars($_REQUEST[$var], ENT_QUOTES, "UTF-8"));
+       } else {
+           $tmp = $_REQUEST[$var];
+           array_walk_recursive($tmp, function (&$valor) {
+               $valor = trim(htmlspecialchars($valor, ENT_QUOTES, "UTF-8"));
+           });
+       }
+       return $tmp;
+ }
 
 ?>
 <!DOCTYPE html>
@@ -30,12 +47,19 @@ if (!isset($_SESSION["lista"])){
   <h1>Tabla de una fila con casillas de verificación (Resultado)</h1>
 
 <?php
+$casilla = recoge("c", []);
+$casillasNum = count($casillas);
 
-print "<p>Ha marcado <strong>". count($_SESSION["lista"]) ."</strong> casilla de un total de <strong>$_SESSION[numRandom]</strong>: <strong>".
-foreach ($_SESSION["lista"] as $valor){
-  print "$valor "}
-." </strong></p>\n";
-
+if ($casillasNum == 0){
+print "  <p>No ha marcado ninguna casilla.</p>\n";
+}else{
+  print "<p>Ha marcado <strong>$casillasNum</strong> casilla de un total de <strong>".count($_SESSION["lista"])."</strong>: <strong>";
+  foreach ($casilla as $indice => $valor){
+    print "$valor ";
+  }
+  print " </strong></p>\n";
+  $_SESSION["lista"] = [];
+}
 ?>
 
   <p><a href="matrices-2-1-1.php">Volver al formulario.</a></p>

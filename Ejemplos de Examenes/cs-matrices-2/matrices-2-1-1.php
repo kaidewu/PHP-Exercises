@@ -7,8 +7,8 @@
  */
 session_name("matrices-2-1-1");
 session_start();
-if (!isset($_SESSION["lista"])){
-  $_SESSION["lista"] = [];
+if (!isset($_SESSION["comprobacion"])){
+  $_SESSION["comprobacion"] = 1;
 }
 
 ?>
@@ -35,10 +35,11 @@ if (!isset($_SESSION["lista"])){
       <tbody>
         <tr>
 <?php
-$_SESION["numRandom"] = rand(1, 20);
-for ($i = 1; $i < $_SESION["numRandom"]; $i++) {
+
+$_SESSION["numRandom"] = rand(1, 20);
+for ($i = 1; $i < $_SESSION["numRandom"]; $i++) {
   print "        <td><label><input type=\"checkbox\" name=\"c[$i]\"> $i</label></td>\n";
-  $_SESION["lista"] = $i;
+  $_SESSION["lista"][] = $i;
 }
 
 ?>
