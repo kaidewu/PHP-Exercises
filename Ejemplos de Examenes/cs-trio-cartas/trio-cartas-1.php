@@ -4,8 +4,14 @@
  *
  * @author Escriba aquí su nombre
  */
-
-print "<!-- Ejercicio incompleto -->\n";
+session_name("triocartas");
+session_start();
+if (!isset($_SESSION["cambios"])){
+  $_SESSION["cambios"] = 0;
+  $_SESSION["cartas1"] = rand(1, 10);
+  $_SESSION["cartas2"] = rand(1, 10);
+  $_SESSION["cartas3"] = rand(1, 10);
+}
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +33,31 @@ print "<!-- Ejercicio incompleto -->\n";
   <form action="trio-cartas-2.php">
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+if (($_SESSION["cartas1"] == $_SESSION["cartas2"]) && ($_SESSION["cartas2"] == $_SESSION["cartas3"])){
+  print "    <p>¡Trío conseguido! Ha tenido que hacer $_SESSION[cambios] cambios de cartas.</p>\n";
+  print "\n";
+  print "    <p>\n";
+  print "      <button type=\"submit\" name=\"cambia\" value=\"0\">Volver a empezar</button>\n";
+  print "    </p>\n";
+
+}else{
+  print "    <p>Haga clic en una de las cartas para cambiarla. El juego termina cuando obtenga tres cartas iguales.</p>\n";
+  print "\n";
+  print "    <p>\n";
+  print "      <button type=\"submit\" name=\"cambia\" value=\"1\">\n";
+  print "        <img src=\"img/c$_SESSION[cartas1].svg\" alt=\"$_SESSION[cartas1]\" width=\"140\" height=\"140\">\n";
+  print "      </button>\n";
+  print "      <button type=\"submit\" name=\"cambia\" value=\"2\">\n";
+  print "        <img src=\"img/c$_SESSION[cartas2].svg\" alt=\"$_SESSION[cartas2]\" width=\"140\" height=\"140\">\n";
+  print "      </button>\n";
+  print "      <button type=\"submit\" name=\"cambia\" value=\"3\">\n";
+  print "        <img src=\"img/c$_SESSION[cartas3].svg\" alt=\"$_SESSION[cartas3]\" width=\"140\" height=\"140\">\n";
+  print "      </button>\n";
+  print "    </p>\n";
+  print "\n";
+  print "    <p>Cambios de cartas realizados: $_SESSION[cambios]</p>\n";
+}
+
 
 ?>
   </form>
