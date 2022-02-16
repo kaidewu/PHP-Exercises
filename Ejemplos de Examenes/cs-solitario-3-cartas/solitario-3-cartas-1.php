@@ -1,12 +1,19 @@
 <?php
 /**
- * Solitario de tres cartas- solitario-3-cartas-1.php
+ * Solitario de tres carta- solitario-3-cartas-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
-
-print "<!-- Ejercicio incompleto -->\n";
+session_name("solitario-3");
+session_start();
+if (!isset($_SESSION["puntos"])){
+  $_SESSION["puntos"] = 0;
+  $_SESSION["cambios"] = 3;
+  $_SESSION["carta1"] = rand(1, 10);
+  $_SESSION["carta2"] = rand(1, 10);
+  $_SESSION["carta3"] = rand(1, 10);
+}
 
 ?>
 <!DOCTYPE html>
@@ -14,9 +21,9 @@ print "<!-- Ejercicio incompleto -->\n";
 <head>
   <meta charset="utf-8">
   <title>
-    Solitario de tres cartas.
+    Solitario de tres carta.
     Sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -35,7 +42,21 @@ print "<!-- Ejercicio incompleto -->\n";
 
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+print "    <p>\n";
+print "      <button type=\"submit\" name=\"accion\" value=\"carta1\">\n";
+print "        <img src=\"img/c$_SESSION[carta1].svg\" alt=\"$_SESSION[carta1]\" width=\"140\" height=\"140\">\n";
+print "      </button>\n";
+print "      <button type=\"submit\" name=\"accion\" value=\"carta2\">\n";
+print "        <img src=\"img/c$_SESSION[carta2].svg\" alt=\"$_SESSION[carta2]\" width=\"140\" height=\"140\">\n";
+print "      </button>\n";
+print "      <button type=\"submit\" name=\"accion\" value=\"carta3\">\n";
+print "        <img src=\"img/c$_SESSION[carta3].svg\" alt=\"$_SESSION[carta3]\" width=\"140\" height=\"140\">\n";
+print "      </button>\n";
+print "    </p>\n";
+print "\n";
+if ($_SESSION["cambios"] == 0){
+  print "    <p>Partida terminada: $_SESSION[puntos] puntos</p>\n";
+}
 
 ?>
 
@@ -46,7 +67,7 @@ print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>

@@ -2,7 +2,7 @@
 /**
  * Colores HSL- color-hsl-2.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
 

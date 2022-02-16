@@ -2,7 +2,7 @@
 /**
  * Récord- record-cartas-2.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
 
