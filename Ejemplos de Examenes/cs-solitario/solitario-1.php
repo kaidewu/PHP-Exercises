@@ -2,11 +2,14 @@
 /**
  * Solitario - solitario-1.php
  *
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  *
  */
-
-print "<!-- Ejercicio incompleto -->\n";
+session_name("solitario");
+session_start();
+if (!isset($_SESSION["puntos"])){
+  $_SESSION["puntos"] = 0;
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +18,7 @@ print "<!-- Ejercicio incompleto -->\n";
   <meta charset="utf-8">
   <title>
     Solitario. Sesiones.
-    Escriba aquí su nombre
+    Kaide Wu
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="mclibre-php-ejercicios.css" title="Color">
@@ -30,7 +33,22 @@ print "<!-- Ejercicio incompleto -->\n";
 
 <?php
 
-print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
+if ($_SESSION["puntos"] == 0){
+  print "    <p>\n";
+  print "      <img src=\"img/t10.svg\" alt=\"10\" width=\"100\" height=\"136\">\n";
+  print "    </p>\n";
+}else{
+  print "    <p>\n";
+  print "      <img src=\"img/t$_SESSION[cartas].svg\" alt=\"$_SESSION[cartas]\" width=\"100\" height=\"136\">\n";
+  if (($_SESSION["puntos"] >= 50) && ($_SESSION["puntos"] <= 99)){
+    print "<span style=\"font-size: 136px; vertical-align: top\">&#128515;</span>\n";
+  }elseif ($_SESSION["puntos"] >= 100){
+    print "<span style=\"font-size: 136px; vertical-align: top\">&#127881;</span>\n";
+  }
+  print "    </p>\n";
+}
+print "\n";
+print "    <p>Puntos: $_SESSION[puntos]</p>\n";
 
 ?>
 
@@ -41,7 +59,7 @@ print "  <p class=\"aviso\">Ejercicio incompleto</p>\n";
   </form>
 
   <footer>
-    <p>Escriba aquí su nombre</p>
+    <p>Kaide Wu</p>
   </footer>
 </body>
 </html>
