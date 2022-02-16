@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"])) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO) {
     header("Location:../../index.php");
     exit;
 }
@@ -53,7 +51,7 @@ if (mb_strlen($telefono, "UTF-8") > $cfg["dbPersonasTamTelefono"]) {
 }
 
 if (mb_strlen($correo, "UTF-8") > $cfg["dbPersonasTamCorreo"]) {
-    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbPersonasTamCorreo]  caracteres.</p>\n";
+    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbPersonasTamCorreo] caracteres.</p>\n";
     print "\n";
 } else {
     $correoOk = true;
@@ -73,7 +71,7 @@ if ($id == "") {
 
 if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $idOk) {
     $consulta = "SELECT COUNT(*) FROM $cfg[dbPersonasTabla]
-                 WHERE id=:id";
+                 WHERE id = :id";
 
     $resultado = $pdo->prepare($consulta);
     if (!$resultado) {
@@ -87,11 +85,11 @@ if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $idOk) {
         // mayúsculas de minúsculas y si en un registro sólo se cambian mayúsculas por
         // minúsculas MySQL diría que ya hay un registro como el que se quiere guardar.
         $consulta = "SELECT COUNT(*) FROM $cfg[dbPersonasTabla]
-                     WHERE nombre=:nombre
-                     AND apellidos=:apellidos
-                     AND telefono=:telefono
-                     AND correo=:correo
-                     AND id<>:id";
+                     WHERE nombre = :nombre
+                     AND apellidos = :apellidos
+                     AND telefono = :telefono
+                     AND correo = :correo
+                     AND id <> :id";
 
         $resultado = $pdo->prepare($consulta);
         if (!$resultado) {
@@ -103,9 +101,9 @@ if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk && $idOk) {
                 . "No se ha guardado la modificación.</p>\n";
         } else {
             $consulta = "UPDATE $cfg[dbPersonasTabla]
-                         SET nombre=:nombre, apellidos=:apellidos,
-                             telefono=:telefono, correo=:correo
-                         WHERE id=:id";
+                         SET nombre = :nombre, apellidos = :apellidos,
+                             telefono = :telefono, correo = :correo
+                         WHERE id = :id";
 
             $resultado = $pdo->prepare($consulta);
             if (!$resultado) {

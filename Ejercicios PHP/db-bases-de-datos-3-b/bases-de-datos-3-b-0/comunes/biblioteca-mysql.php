@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 // FUNCIONES ESPECÍFICAS DE LA BASE DE DATOS MYSQL
@@ -30,11 +28,14 @@ function conectaDb()
     }
 }
 
-// MYSQL: Consultas de borrado y creación de base de datos y tablas
+// MYSQL: Borrado y creación de base de datos y tablas
 
 function borraTodo()
 {
     global $pdo, $cfg;
+
+    print "    <p>Sistema Gestor de Bases de Datos: MySQL.</p>\n";
+    print "\n";
 
     $consulta = "DROP DATABASE IF EXISTS $cfg[mysqlDatabase]";
 
@@ -56,7 +57,7 @@ function borraTodo()
         print "\n";
 
         $consulta = "CREATE TABLE $cfg[dbUsuariosTabla]  (
-                     id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+                     id INTEGER UNSIGNED AUTO_INCREMENT,
                      usuario VARCHAR($cfg[dbUsuariosTamUsuario]),
                      password VARCHAR($cfg[dbUsuariosTamPassword]),
                      nivel INTEGER NOT NULL,
@@ -66,11 +67,12 @@ function borraTodo()
         if (!$pdo->query($consulta)) {
             print "    <p class=\"aviso\">Error al crear la tabla Usuarios. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
         } else {
-            print "    <p>Tabla creada correctamente.</p>\n";
+            print "    <p>Tabla Usuarios creada correctamente.</p>\n";
+            print "\n";
 
             $consulta = "INSERT INTO $cfg[dbUsuariosTabla]
-                         (usuario, password, nivel)
-                         VALUES ('$cfg[rootName]', '$cfg[rootPassword]', " . $cfg["usuariosNiveles"]["Administrador"] . ")";
+                         (id, usuario, password, nivel)
+                         VALUES (1, '$cfg[rootName]', '$cfg[rootPassword]', " . NIVEL_ADMINISTRADOR . ")";
 
             if (!$pdo->query($consulta)) {
                 print "    <p class=\"aviso\">Error al insertar el registro de usuario. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
@@ -78,9 +80,10 @@ function borraTodo()
                 print "    <p>Registro de usuario creado correctamente.</p>\n";
             }
         }
+        print "\n";
 
         $consulta = "CREATE TABLE $cfg[dbPersonasTabla]  (
-                     id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+                     id INTEGER UNSIGNED AUTO_INCREMENT,
                      nombre VARCHAR($cfg[dbPersonasTamNombre]),
                      apellidos VARCHAR($cfg[dbPersonasTamApellidos]),
                      telefono VARCHAR($cfg[dbPersonasTamTelefono]),
@@ -91,10 +94,12 @@ function borraTodo()
         if (!$pdo->query($consulta)) {
             print "    <p class=\"aviso\">Error al crear la tabla Personas. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
         } else {
-            print "    <p>Tabla creada correctamente.</p>\n";
+            print "    <p>Tabla Personas creada correctamente.</p>\n";
         }
     }
 }
+
+// MYSQL: Comprobación de existencia de las tablas
 
 function existenTablas()
 {
@@ -102,7 +107,7 @@ function existenTablas()
 
     $existe = true;
 
-    $consulta = "SELECT count(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$cfg[mysqlDatabase]'";
+    $consulta = "SELECT COUNT(*) FROM information_schema.schemata WHERE schema_name = '$cfg[mysqlDatabase]'";
 
     $resultado = $pdo->query($consulta);
     if (!$resultado) {
@@ -118,7 +123,7 @@ function existenTablas()
                 // de la base de datos, así que lo elimino
                 $tabla = str_replace("$cfg[mysqlDatabase].", "", $tabla);
 
-                $consulta = "SELECT count(*) FROM information_schema.tables
+                $consulta = "SELECT COUNT(*) FROM information_schema.tables
                              WHERE table_schema = '$cfg[mysqlDatabase]'
                              AND table_name = '$tabla'";
 

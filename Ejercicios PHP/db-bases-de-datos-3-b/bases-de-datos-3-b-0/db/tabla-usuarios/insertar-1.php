@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../../index.php");
     exit;
 }
@@ -24,7 +22,7 @@ $consulta = "SELECT COUNT(*) FROM $cfg[dbUsuariosTabla]";
 $resultado = $pdo->query($consulta);
 if (!$resultado) {
     print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-} elseif ($resultado->fetchColumn() >= $cfg["dbUsuariosmaxReg"]) {
+} elseif ($resultado->fetchColumn() >= $cfg["dbUsuariosMaxReg"]) {
     print "    <p class=\"aviso\">Se ha alcanzado el número máximo de registros que se pueden guardar.</p>\n";
     print "\n";
     print "    <p class=\"aviso\">Por favor, borre algún registro antes.</p>\n";
@@ -36,18 +34,18 @@ if (!$resultado) {
     print "        <tbody>\n";
     print "          <tr>\n";
     print "            <td>Usuario:</td>\n";
-    print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[dbUsuariosTamUsuario]\" maxlength=\"$cfg[dbUsuariosTamUsuario]\" autofocus></td>\n";
+    print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[formUsuariosTamUsuario]\" maxlength=\"$cfg[formUsuariosTamUsuario]\" autofocus></td>\n";
     print "          </tr>\n";
     print "          <tr>\n";
     print "            <td>Contraseña:</td>\n";
-    print "            <td><input type=\"text\" name=\"password\" size=\"$cfg[usuariosTamPassword]\" maxlength=\"$cfg[usuariosTamPassword]\"></td>\n";
+    print "            <td><input type=\"text\" name=\"password\" size=\"$cfg[formUsuariosTamPassword]\" maxlength=\"$cfg[formUsuariosTamPassword]\"></td>\n";
     print "          </tr>\n";
     print "          <tr>\n";
     print "            <td>Nivel:</td>\n";
     print "            <td>\n";
     print "              <select name=\"nivel\">\n";
     foreach ($cfg["usuariosNiveles"] as $indice => $valor) {
-        print "                <option value=\"$valor\">$indice</option>\n";
+        print "                <option value=\"$indice\">$valor</option>\n";
     }
     print "              </select>\n";
     print "            </td>\n";

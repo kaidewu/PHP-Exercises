@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../index.php");
     exit;
 }
@@ -21,8 +19,8 @@ print "    <form action=\"borrar-todo-2.php\" method=\"$cfg[formMethod]\">\n";
 print "      <p>¿Está seguro?</p>\n";
 print "\n";
 print "      <p>\n";
-print "        <input type=\"submit\" value=\"Sí\" name=\"si\">\n";
-print "        <input type=\"submit\" value=\"No\" name=\"no\">\n";
+print "        <input type=\"submit\" name=\"borrar\" value=\"Sí\">\n";
+print "        <input type=\"submit\" name=\"borrar\" value=\"No\">\n";
 print "      </p>\n";
 print "    </form>\n";
 

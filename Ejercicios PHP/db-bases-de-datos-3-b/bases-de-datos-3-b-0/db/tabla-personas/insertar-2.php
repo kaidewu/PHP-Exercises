@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"])) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_USUARIO_BASICO) {
     header("Location:../../index.php");
     exit;
 }
@@ -51,7 +49,7 @@ if (mb_strlen($telefono, "UTF-8") > $cfg["dbPersonasTamTelefono"]) {
 }
 
 if (mb_strlen($correo, "UTF-8") > $cfg["dbPersonasTamCorreo"]) {
-    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbPersonasTamCorreo]  caracteres.</p>\n";
+    print "    <p class=\"aviso\">El correo no puede tener más de $cfg[dbPersonasTamCorreo] caracteres.</p>\n";
     print "\n";
 } else {
     $correoOk = true;
@@ -65,10 +63,10 @@ if ($nombre == "" && $apellidos == "" && $telefono == "" && $correo == "") {
 
 if ($nombreOk && $apellidosOk && $telefonoOk && $correoOk) {
     $consulta = "SELECT COUNT(*) FROM $cfg[dbPersonasTabla]
-                 WHERE nombre=:nombre
-                 AND apellidos LIKE :apellidos
-                 AND telefono LIKE :telefono
-                 AND correo LIKE :correo";
+                 WHERE nombre = :nombre
+                 AND apellidos = :apellidos
+                 AND telefono = :telefono
+                 AND correo = :correo";
 
     $resultado = $pdo->prepare($consulta);
     if (!$resultado) {

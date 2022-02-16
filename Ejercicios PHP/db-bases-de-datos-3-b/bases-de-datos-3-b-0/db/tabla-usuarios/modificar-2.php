@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../../index.php");
     exit;
 }
@@ -25,7 +23,7 @@ if ($id == "") {
     print "    <p class=\"aviso\">No se ha seleccionado ningún registro.</p>\n";
 } else {
     $consulta = "SELECT * FROM $cfg[dbUsuariosTabla]
-                 WHERE id=:id";
+                 WHERE id = :id";
 
     $resultado = $pdo->prepare($consulta);
     if (!$resultado) {
@@ -44,26 +42,25 @@ if ($id == "") {
         print "        <tbody>\n";
         print "          <tr>\n";
         print "            <td>Usuario:</td>\n";
-        print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[dbUsuariosTamUsuario]\" maxlength=\"$cfg[dbUsuariosTamUsuario]\" value=\"$registro[usuario]\" autofocus></td>\n";
+        print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[formUsuariosTamUsuario]\" maxlength=\"$cfg[formUsuariosTamUsuario]\" value=\"$registro[usuario]\" autofocus></td>\n";
         print "          </tr>\n";
         print "          <tr>\n";
         print "            <td>Contraseña:</td>\n";
-        print "            <td><input type=\"text\" name=\"password\" size=\"$cfg[dbUsuariosTamPassword]\" maxlength=\"$cfg[dbUsuariosTamPassword]\"></td>\n";
-        print "          </tr>\n";
-        print "          <tr>\n";
-        print "          s<td>¿Quieres mantener la contraseña actual?</td>\n";
-        print "            <td><input type=\"checkbox\" name=\"mantener\" value=\"si\"></td>\n";
+        print "            <td><input type=\"text\" name=\"password\" size=\"$cfg[formUsuariosTamPassword]\" maxlength=\"$cfg[formUsuariosTamPassword]\"></td>\n";
         print "          </tr>\n";
         print "          <tr>\n";
         print "            <td>Nivel:</td>\n";
         print "            <td>\n";
         print "              <select name=\"nivel\">\n";
         foreach ($cfg["usuariosNiveles"] as $indice => $valor) {
-            print "                <option value=\"$valor\">$indice</option>\n";
+            if ($registro["nivel"] == $indice) {
+                print "                <option value=\"$indice\" selected>$valor</option>\n";
+            } else {
+                print "                <option value=\"$indice\">$valor</option>\n";
+            }
         }
         print "              </select>\n";
         print "            </td>\n";
-        print "          </tr>\n";
         print "          </tr>\n";
         print "        </tbody>\n";
         print "      </table>\n";

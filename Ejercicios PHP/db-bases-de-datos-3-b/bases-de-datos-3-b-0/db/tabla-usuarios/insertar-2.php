@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../../index.php");
     exit;
 }
@@ -37,8 +35,8 @@ if ($usuario == "") {
     $usuarioOk = true;
 }
 
-if (mb_strlen($password, "UTF-8") > $cfg["dbUsuariosTamPassword"]) {
-    print "    <p class=\"aviso\">La contraseña no puede tener más de $cfg[dbUsuariosTamPassword] caracteres.</p>\n";
+if (mb_strlen($password, "UTF-8") > $cfg["formUsuariosTamPassword"]) {
+    print "    <p class=\"aviso\">La contraseña no puede tener más de $cfg[formUsuariosTamPassword] caracteres.</p>\n";
     print "\n";
 } else {
     $passwordOk = true;
@@ -47,7 +45,7 @@ if (mb_strlen($password, "UTF-8") > $cfg["dbUsuariosTamPassword"]) {
 if ($nivel == "") {
     print "    <p class=\"aviso\">Hay que seleccionar un nivel de usuario.</p>\n";
     print "\n";
-} elseif (!in_array($nivel, $cfg["usuariosNiveles"])) {
+} elseif (!array_key_exists($nivel, $cfg["usuariosNiveles"])) {
     print "    <p class=\"aviso\">Nivel de usuario incorrecto.</p>\n";
     print "\n";
 } else {
@@ -56,7 +54,7 @@ if ($nivel == "") {
 
 if ($usuarioOk && $passwordOk && $nivelOk) {
     $consulta = "SELECT COUNT(*) FROM $cfg[dbUsuariosTabla]
-                 WHERE usuario=:usuario";
+                 WHERE usuario = :usuario";
 
     $resultado = $pdo->prepare($consulta);
     if (!$resultado) {
@@ -71,7 +69,7 @@ if ($usuarioOk && $passwordOk && $nivelOk) {
         $resultado = $pdo->query($consulta);
         if (!$resultado) {
             print "    <p class=\"aviso\">Error en la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-        } elseif ($resultado->fetchColumn() >= $cfg["dbUsuariosmaxReg"]) {
+        } elseif ($resultado->fetchColumn() >= $cfg["dbUsuariosMaxReg"]) {
             print "    <p class=\"aviso\">Se ha alcanzado el número máximo de registros que se pueden guardar.</p>\n";
             print "\n";
             print "    <p class=\"aviso\">Por favor, borre algún registro antes de insertar un nuevo registro.</p>\n";
@@ -83,7 +81,7 @@ if ($usuarioOk && $passwordOk && $nivelOk) {
             $resultado = $pdo->prepare($consulta);
             if (!$resultado) {
                 print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-            } elseif (!$resultado->execute([":usuario" => $usuario, ":nivel" => $nivel, ":password" => encripta($password)])) {
+            } elseif (!$resultado->execute([":usuario" => $usuario, ":password" => encripta($password), ":nivel" => $nivel])) {
                 print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
             } else {
                 print "    <p>Registro creado correctamente.</p>\n";

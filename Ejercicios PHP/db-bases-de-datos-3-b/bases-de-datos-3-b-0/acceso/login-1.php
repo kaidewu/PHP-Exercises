@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../comunes/biblioteca.php";
@@ -38,11 +36,11 @@ print "      <table>\n";
 print "        <tbody>\n";
 print "          <tr>\n";
 print "            <td>Nombre:</td>\n";
-print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[dbUsuariosTamUsuario]\" maxlength=\"$cfg[dbUsuariosTamUsuario]\" autofocus/></td>\n";
+print "            <td><input type=\"text\" name=\"usuario\" size=\"$cfg[formUsuariosTamUsuario]\" maxlength=\"$cfg[formUsuariosTamUsuario]\" autofocus/></td>\n";
 print "          </tr>\n";
 print "          <tr>\n";
 print "            <td>Contraseña:</td>\n";
-print "            <td><input type=\"password\" name=\"password\" size=\"$cfg[usuariosTamPassword]\" maxlength=\"$cfg[usuariosTamPassword]\"/></td>\n";
+print "            <td><input type=\"password\" name=\"password\" size=\"$cfg[formUsuariosTamPassword]\" maxlength=\"$cfg[formUsuariosTamPassword]\"/></td>\n";
 print "          </tr>\n";
 print "        </tbody>\n";
 print "      </table>\n";

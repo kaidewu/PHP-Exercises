@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../../index.php");
     exit;
 }
@@ -23,7 +21,6 @@ $usuario  = recoge("usuario");
 $password = recoge("password");
 $nivel    = recoge("nivel");
 $id       = recoge("id");
-$mantener = recoge("mantener");
 
 $usuarioOk  = false;
 $passwordOk = false;
@@ -40,8 +37,8 @@ if ($usuario == "") {
     $usuarioOk = true;
 }
 
-if (mb_strlen($password, "UTF-8") > $cfg["dbUsuariosTamPassword"]) {
-    print "    <p class=\"aviso\">La contraseña no puede tener más de $cfg[dbUsuariosTamPassword] caracteres.</p>\n";
+if (mb_strlen($password, "UTF-8") > $cfg["formUsuariosTamPassword"]) {
+    print "    <p class=\"aviso\">La contraseña no puede tener más de $cfg[formUsuariosTamPassword] caracteres.</p>\n";
     print "\n";
 } else {
     $passwordOk = true;
@@ -50,7 +47,7 @@ if (mb_strlen($password, "UTF-8") > $cfg["dbUsuariosTamPassword"]) {
 if ($nivel == "") {
     print "    <p class=\"aviso\">Hay que seleccionar un nivel de usuario.</p>\n";
     print "\n";
-} elseif (!in_array($nivel, $cfg["usuariosNiveles"])) {
+} elseif (!array_key_exists($nivel, $cfg["usuariosNiveles"])) {
     print "    <p class=\"aviso\">Nivel de usuario incorrecto.</p>\n";
     print "\n";
 } else {
@@ -65,7 +62,7 @@ if ($id == "") {
 
 if ($usuarioOk && $passwordOk && $nivelOk && $idOk) {
     $consulta = "SELECT COUNT(*) FROM $cfg[dbUsuariosTabla]
-                 WHERE id=:id";
+                 WHERE id = :id";
 
     $resultado = $pdo->prepare($consulta);
     if (!$resultado) {
@@ -79,8 +76,8 @@ if ($usuarioOk && $passwordOk && $nivelOk && $idOk) {
         // mayúsculas de minúsculas y si en un registro sólo se cambian mayúsculas por
         // minúsculas MySQL diría que ya hay un registro como el que se quiere guardar.
         $consulta = "SELECT COUNT(*) FROM $cfg[dbUsuariosTabla]
-                     WHERE usuario=:usuario
-                     AND id<>:id";
+                     WHERE usuario = :usuario
+                     AND id <> :id";
 
         $resultado = $pdo->prepare($consulta);
         if (!$resultado) {
@@ -92,7 +89,7 @@ if ($usuarioOk && $passwordOk && $nivelOk && $idOk) {
                 . "No se ha guardado la modificación.</p>\n";
         } else {
             $consulta = "SELECT * FROM $cfg[dbUsuariosTabla]
-                         WHERE id=:id";
+                         WHERE id = :id";
 
             $resultado = $pdo->prepare($consulta);
             if (!$resultado) {
@@ -104,33 +101,17 @@ if ($usuarioOk && $passwordOk && $nivelOk && $idOk) {
                 if ($registro["usuario"] == $cfg["rootName"] && (!$cfg["rootPasswordModificable"] || $registro["usuario"] != $usuario || $registro["nivel"] != $nivel)) {
                     print "    <p class=\"aviso\">Del usuario Administrador inicial sólo se puede cambiar la contraseña.</p>\n";
                 } else {
-                    if ($manterner == "si"){
-                        $consulta = "UPDATE $cfg[dbUsuariosTabla]
-                        SET usuario=:usuario, nivel=:nivel
-                        WHERE id=:id";
+                    $consulta = "UPDATE $cfg[dbUsuariosTabla]
+                                 SET usuario = :usuario, password = :password, nivel = :nivel
+                                 WHERE id = :id";
 
-                        $resultado = $pdo->prepare($consulta);
-                        if (!$resultado) {
-                            print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-                        } elseif (!$resultado->execute([":usuario" => $usuario, ":nivel" => $nivel, ":id" => $id])) {
-                            print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-                        } else {
-                            print "    <p>Registro modificado correctamente.</p>\n";
-                        }
-                    }
-                    else{
-                        $consulta = "UPDATE $cfg[dbUsuariosTabla]
-                        SET usuario=:usuario, password=:password, nivel=:nivel
-                        WHERE id=:id";
-
-                        $resultado = $pdo->prepare($consulta);
-                        if (!$resultado) {
-                            print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-                        } elseif (!$resultado->execute([":usuario" => $usuario, ":password" => encripta($password), ":nivel" => $nivel, ":id" => $id])) {
-                            print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-                        } else {
-                            print "    <p>Registro modificado correctamente.</p>\n";
-                        }
+                    $resultado = $pdo->prepare($consulta);
+                    if (!$resultado) {
+                        print "    <p class=\"aviso\">Error al preparar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+                    } elseif (!$resultado->execute([":usuario" => $usuario, ":password" => encripta($password), ":nivel" => $nivel, ":id" => $id])) {
+                        print "    <p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+                    } else {
+                        print "    <p>Registro modificado correctamente.</p>\n";
                     }
                 }
             }

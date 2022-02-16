@@ -1,8 +1,6 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 require_once "../../comunes/biblioteca.php";
@@ -10,7 +8,7 @@ require_once "../../comunes/biblioteca.php";
 session_name($cfg["sessionName"]);
 session_start();
 
-if (!isset($_SESSION["conectado"]) || $_SESSION["conectado"] < NIVEL_ADMINISTRADOR) {
+if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) {
     header("Location:../../index.php");
     exit;
 }
@@ -77,7 +75,7 @@ if (!$resultado) {
         }
         print "            <td>$registro[usuario]</td>\n";
         print "            <td>$registro[password]</td>\n";
-        print "            <td>" . array_search($registro["nivel"], $cfg["usuariosNiveles"]) . "</td>\n";
+        print "            <td>{$cfg["usuariosNiveles"][$registro["nivel"]]}</td>\n";
         print "          </tr>\n";
     }
     print "        </tbody>\n";

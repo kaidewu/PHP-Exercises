@@ -1,44 +1,31 @@
 <?php
 /**
- * @author    Bartolomé Sintes Marco - bartolome.sintes+mclibre@gmail.com
- * @license   https://www.gnu.org/licenses/agpl-3.0.txt AGPL 3 or later
- * @link      https://www.mclibre.org
+ * @author Escriba aquí su nombre
  */
 
 // Constantes y variables configurables por el programador de la aplicación
 
-define("MYSQL", 1);                         // Base de datos MySQL
-define("SQLITE", 2);                        // Base de datos SQLITE
-define("PGSQL", 3);
+define("SQLITE", 1);                        // Base de datos SQLITE
+define("MYSQL", 2);                         // Base de datos MySQL
 
 define("MENU_PRINCIPAL", 1);                // Menú principal sin conectar
-define("MENU_PRINCIPAL_CONECTADO", 2);      // Menú principal conectado
-define("MENU_VOLVER", 3);                   // Menú Volver a inicio
-define("MENU_ADMINISTRADOR", 4);            // Menú Administrador
-define("MENU_USUARIOS", 5);                 // Menú Usuarios
-define("MENU_PERSONAS", 6);                 // Menú Personas
+define("MENU_VOLVER", 2);                   // Menú Volver a inicio
+define("MENU_ADMINISTRADOR", 3);            // Menú Administrador
+define("MENU_USUARIOS", 4);                 // Menú Usuarios
+define("MENU_PERSONAS", 5);                 // Menú Personas
 
 define("PROFUNDIDAD_0", 0);                 // Profundidad de nivel de la página: directorio raíz
 define("PROFUNDIDAD_1", 1);                 // Profundidad de nivel de la página: subdirectorio
 define("PROFUNDIDAD_2", 2);                 // Profundidad de nivel de la página: sub-subdirectorio
 
-define("NIVEL_USUARIO_BASICO", 1);          // Usuario web de nivel Usuario Básico
-define("NIVEL_ADMINISTRADOR", 2);           // Usuario web de nivel Administrador
+define("NIVEL_USUARIO_BASICO", 10);         // Usuario web de nivel Usuario Básico
+define("NIVEL_ADMINISTRADOR", 20);          // Usuario web de nivel Administrador
 
 // Variables configurables por el administrador de la aplicación
 
 require_once "config.php";
 
-// Configuración Usuario
-
-$cfg["usuariosTamPassword"] = 20;           // Tamaño de la Contraseña de Usuario
-
-// Configuración Tabla Usuarios
-
-$cfg["dbUsuariosTamUsuario"]  = 20;         // Tamaño de la columna Usuarios > Nombre de Usuario
-$cfg["dbUsuariosTamPassword"] = 64;         // Tamaño de la columna Usuarios > Contraseña de Usuario (cifrada)
-
-// Valores de ordenación de la tabla
+// Valores de ordenación de las tablas
 
 $cfg["dbPersonasColumnasOrden"] = [
     "nombre ASC", "nombre DESC",
@@ -56,18 +43,16 @@ $cfg["dbUsuariosColumnasOrden"] = [
 // Niveles de usuario
 
 $cfg["usuariosNiveles"] = [
-    "Usuario Básico" => NIVEL_USUARIO_BASICO,
-    "Administrador"  => NIVEL_ADMINISTRADOR,
+    NIVEL_USUARIO_BASICO => "Usuario Básico",
+    NIVEL_ADMINISTRADOR => "Administrador",
 ];
 
 // Carga Biblioteca específica de la base de datos utilizada
 
-if ($cfg["dbMotor"] == MYSQL) {
-    require_once "biblioteca-mysql.php";
-} elseif ($cfg["dbMotor"] == SQLITE) {
+if ($cfg["dbMotor"] == SQLITE) {
     require_once "biblioteca-sqlite.php";
-}elseif ($cfg["dbMotor"] == PGSQL) {
-    require_once "biblioteca-postgresql.php";
+} elseif ($cfg["dbMotor"] == MYSQL) {
+    require_once "biblioteca-mysql.php";
 }
 
 // Tablas
@@ -111,8 +96,8 @@ function cabecera($texto, $menu, $profundidadDirectorio)
     print "<head>\n";
     print "  <meta charset=\"utf-8\">\n";
     print "  <title>\n";
-    print "    $texto. Bases de datos (3 B) 0. Bases de datos (3).\n";
-    print "    Ejercicios. PHP. Bartolomé Sintes Marco. www.mclibre.org\n";
+    print "    $texto. Bases de datos (3 B) 0. Bases de datos (3 B).\n";
+    print "    Escriba aquí su nombre\n";
     print "  </title>\n";
     print "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
     if ($profundidadDirectorio == PROFUNDIDAD_0) {
@@ -138,10 +123,8 @@ function cabecera($texto, $menu, $profundidadDirectorio)
         } else {
             print "        <li>Error en la selección de menú</li>\n";
         }
-    } elseif ($_SESSION["conectado"] == NIVEL_USUARIO_BASICO) {
+    } elseif ($_SESSION["nivel"] == NIVEL_USUARIO_BASICO) {
         if ($menu == MENU_PRINCIPAL) {
-            print "        <li><a href=\"acceso/login-1.php\">Conectarse</a></li>\n";
-        } elseif ($menu == MENU_PRINCIPAL_CONECTADO) {
             print "        <li><a href=\"db/tabla-personas/index.php\">Personas</a></li>\n";
             print "        <li><a href=\"acceso/logout.php\">Desconectarse</a></li>\n";
         } elseif ($menu == MENU_VOLVER) {
@@ -156,10 +139,8 @@ function cabecera($texto, $menu, $profundidadDirectorio)
         } else {
             print "        <li>Error en la selección de menú</li>\n";
         }
-    } elseif ($_SESSION["conectado"] == NIVEL_ADMINISTRADOR) {
+    } elseif ($_SESSION["nivel"] == NIVEL_ADMINISTRADOR) {
         if ($menu == MENU_PRINCIPAL) {
-            print "        <li><a href=\"acceso/login-1.php\">Conectarse</a></li>\n";
-        } elseif ($menu == MENU_PRINCIPAL_CONECTADO) {
             print "        <li><a href=\"db/tabla-personas/index.php\">Personas</a></li>\n";
             print "        <li><a href=\"db/tabla-usuarios/index.php\">Usuarios</a></li>\n";
             print "        <li><a href=\"administrador/index.php\">Administrador</a></li>\n";
@@ -186,8 +167,6 @@ function cabecera($texto, $menu, $profundidadDirectorio)
         } else {
             print "        <li>Error en la selección de menú</li>\n";
         }
-    } else {
-        print "        <li>Error en la selección de menú</li>\n";
     }
     print "      </ul>\n";
     print "    </nav>\n";
@@ -201,20 +180,10 @@ function pie()
     print "  </main>\n";
     print "\n";
     print "  <footer>\n";
-    print "    <p class=\"ultmod\">\n";
-    print "      Última modificación de esta página:\n";
-    print "      <time datetime=\"2022-01-17\">17 de enero de 2022</time>\n";
-    print "    </p>\n";
-    print "\n";
-    print "    <p class=\"licencia\">\n";
-    print "      Este programa forma parte del curso <strong><a href=\"https://www.mclibre.org/consultar/php/\">Programación \n";
-    print "      web en PHP</a></strong> de <a href=\"https://www.mclibre.org/\" rel=\"author\">Bartolomé Sintes Marco</a>.<br>\n";
-    print "      El programa PHP que genera esta página se distribuye bajo \n";
-    print "      <a rel=\"license\" href=\"https://www.gnu.org/licenses/agpl-3.0.txt\">licencia AGPL 3 o posterior</a>.\n";
-    print "    </p>\n";
+    print "    <p>Escriba aquí su nombre</p>\n";
     print "  </footer>\n";
     print "</body>\n";
-    print "</html>";
+    print "</html>\n";
 }
 
 function encripta($cadena)
