@@ -90,7 +90,8 @@ function borraTodo()
                  nombre VARCHAR($cfg[dbPersonasTamNombre]) COLLATE NOCASE,
                  apellidos VARCHAR($cfg[dbPersonasTamApellidos]) COLLATE NOCASE,
                  telefono VARCHAR($cfg[dbPersonasTamTelefono]) COLLATE NOCASE,
-                 correo VARCHAR($cfg[dbPersonasTamCorreo]) COLLATE NOCASE
+                 correo VARCHAR($cfg[dbPersonasTamCorreo]) COLLATE NOCASE,
+                 nacido DATE($cfg[dbPersonasTamNacido]) COLLATE NOCASE
                  )";
 
     if (!$pdo->query($consulta)) {

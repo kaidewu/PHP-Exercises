@@ -45,6 +45,7 @@ $cfg["dbPersonasColumnasOrden"] = [
     "apellidos ASC", "apellidos DESC",
     "telefono ASC", "telefono DESC",
     "correo ASC", "correo DESC",
+    "nacido ASC", "nacido DESC",
 ];
 
 $cfg["dbUsuariosColumnasOrden"] = [

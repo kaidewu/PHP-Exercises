@@ -70,6 +70,15 @@ if (!$resultado) {
     print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
     print "              </button>\n";
     print "            </th>\n";
+    print "            <th>\n";
+    print "              <button name=\"ordena\" value=\"nacido ASC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/abajo.svg\" alt=\"A-Z\" title=\"A-Z\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "              Fecha Nacimiento\n";
+    print "              <button name=\"ordena\" value=\"nacido DESC\" class=\"boton-invisible\">\n";
+    print "                <img src=\"../../img/arriba.svg\" alt=\"Z-A\" title=\"Z-A\" width=\"15\" height=\"12\">\n";
+    print "              </button>\n";
+    print "            </th>\n";
     print "          </tr>\n";
     print "        </thead>\n";
     print "        <tbody>\n";
@@ -79,6 +88,10 @@ if (!$resultado) {
         print "            <td>$registro[apellidos]</td>\n";
         print "            <td>$registro[telefono]</td>\n";
         print "            <td>$registro[correo]</td>\n";
+        if ($registro["nacido"] == "0000-00-00"){
+            $registro["nacido"]= "";
+        }
+        print "            <td>$registro[nacido]</td>\n";
         print "          </tr>\n";
     }
     print "        </tbody>\n";

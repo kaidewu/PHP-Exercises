@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 
 require_once "comunes/biblioteca.php";

@@ -85,6 +85,7 @@ function borraTodo()
                      apellidos VARCHAR($cfg[dbPersonasTamApellidos]),
                      telefono VARCHAR($cfg[dbPersonasTamTelefono]),
                      correo VARCHAR($cfg[dbPersonasTamCorreo]),
+                     nacido DATE($cfg[dbPersonasTamNacido]),
                      PRIMARY KEY(id)
                      )";
 

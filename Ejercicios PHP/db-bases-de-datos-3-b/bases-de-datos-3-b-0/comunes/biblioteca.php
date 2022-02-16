@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 
 // Constantes y variables configurables por el programador de la aplicación
@@ -97,7 +97,7 @@ function cabecera($texto, $menu, $profundidadDirectorio)
     print "  <meta charset=\"utf-8\">\n";
     print "  <title>\n";
     print "    $texto. Bases de datos (3 B) 0. Bases de datos (3 B).\n";
-    print "    Escriba aquí su nombre\n";
+    print "    Kaide Wu\n";
     print "  </title>\n";
     print "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n";
     if ($profundidadDirectorio == PROFUNDIDAD_0) {
@@ -180,7 +180,7 @@ function pie()
     print "  </main>\n";
     print "\n";
     print "  <footer>\n";
-    print "    <p>Escriba aquí su nombre</p>\n";
+    print "    <p>Kaide Wu</p>\n";
     print "  </footer>\n";
     print "</body>\n";
     print "</html>\n";

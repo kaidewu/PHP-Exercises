@@ -36,6 +36,7 @@ $cfg["dbPersonasTamNombre"]    = 40;                        // Tamaño de la col
 $cfg["dbPersonasTamApellidos"] = 60;                        // Tamaño de la columna Personas > Apellidos
 $cfg["dbPersonasTamTelefono"]  = 10;                        // Tamaño de la columna Personas > Teléfono
 $cfg["dbPersonasTamCorreo"]    = 50;                        // Tamaño de la columna Personas > Correo
+$cfg["dbPersonasTamNacido"]    = 10;                        // Tamaño de la columna Personas > Correo
 
 // Número máximo de registros en las tablas
 

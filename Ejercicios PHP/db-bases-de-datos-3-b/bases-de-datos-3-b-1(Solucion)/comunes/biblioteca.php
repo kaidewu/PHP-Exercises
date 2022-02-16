@@ -32,6 +32,8 @@ $cfg["dbPersonasColumnasOrden"] = [
     "apellidos ASC", "apellidos DESC",
     "telefono ASC", "telefono DESC",
     "correo ASC", "correo DESC",
+    "nacido ASC", "nacido DESC",
+
 ];
 
 $cfg["dbUsuariosColumnasOrden"] = [
@@ -191,4 +193,12 @@ function encripta($cadena)
     global $cfg;
 
     return hash($cfg["hashAlgorithm"], $cadena);
+}
+
+function compruebaFecha($fecha)
+{
+    if (strlen($fecha) != 10) {
+        return false;
+    }
+    return checkdate(substr($fecha, 5, 2), substr($fecha, 8, 2), substr($fecha, 0, 4));
 }

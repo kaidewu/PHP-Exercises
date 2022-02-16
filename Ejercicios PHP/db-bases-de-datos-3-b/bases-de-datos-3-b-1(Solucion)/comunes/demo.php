@@ -6,9 +6,9 @@ $cfg["registrosDemo"] = [
     [$cfg["dbUsuariosTabla"], [2, "usuario1", encripta("usuario1"), NIVEL_USUARIO_BASICO]],
     [$cfg["dbUsuariosTabla"], [3, "usuario2", encripta("usuario2"), NIVEL_USUARIO_BASICO]],
     [$cfg["dbUsuariosTabla"], [4, "admin1", encripta("admin1"), NIVEL_ADMINISTRADOR]],
-    [$cfg["dbPersonasTabla"], [1, "Pepito", "Conejo", "271828182", "pepito.conejo@example.com"]],
-    [$cfg["dbPersonasTabla"], [2, "Numa", "Nigerio", "161803398", "numa.nigerio@example.com"]],
-    [$cfg["dbPersonasTabla"], [3, "Fulanito", "Mengánez", "314159265", "fulanito.menganez@example.com"]],
+    [$cfg["dbPersonasTabla"], [1, "Pepito", "Conejo", "271828182", "pepito.conejo@example.com", "1999-08-12"]],
+    [$cfg["dbPersonasTabla"], [2, "Numa", "Nigerio", "161803398", "numa.nigerio@example.com", "1999-08-12"]],
+    [$cfg["dbPersonasTabla"], [3, "Fulanito", "Mengánez", "314159265", "fulanito.menganez@example.com", "1999-08-12"]],
 ];
 
 function insertaDemo()
@@ -24,8 +24,8 @@ function insertaDemo()
                          VALUES ({$registro[1][0]}, '{$registro[1][1]}', '{$registro[1][2]}',  {$registro[1][3]})";
         } elseif ($registro[0] == $cfg["dbPersonasTabla"]) {
             $consulta = "INSERT INTO $cfg[dbPersonasTabla]
-                         (id, nombre, apellidos, telefono, correo)
-                         VALUES ({$registro[1][0]}, '{$registro[1][1]}', '{$registro[1][2]}', '{$registro[1][3]}', '{$registro[1][4]}')";
+                         (id, nombre, apellidos, telefono, correo, nacido)
+                         VALUES ({$registro[1][0]}, '{$registro[1][1]}', '{$registro[1][2]}', '{$registro[1][3]}', '{$registro[1][4]}', '{$registro[1][5]}')";
         }
 
         if (!$pdo->query($consulta)) {

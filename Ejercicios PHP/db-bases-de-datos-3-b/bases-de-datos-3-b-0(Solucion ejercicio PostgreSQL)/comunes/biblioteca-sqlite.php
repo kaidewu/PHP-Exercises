@@ -80,7 +80,8 @@ function borraTodo()
                  nombre VARCHAR($cfg[dbPersonasTamNombre]),
                  apellidos VARCHAR($cfg[dbPersonasTamApellidos]),
                  telefono VARCHAR($cfg[dbPersonasTamTelefono]),
-                 correo VARCHAR($cfg[dbPersonasTamCorreo])
+                 correo VARCHAR($cfg[dbPersonasTamCorreo]),
+                 nacido DATE($cfg[dbPersonasTamNacido])
                  )";
 
     if (!$pdo->query($consulta)) {

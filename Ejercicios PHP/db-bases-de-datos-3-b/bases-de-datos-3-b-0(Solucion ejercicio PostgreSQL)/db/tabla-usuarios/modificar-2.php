@@ -51,7 +51,7 @@ if ($id == "") {
         print "            <td><input type=\"text\" name=\"password\" size=\"$cfg[dbUsuariosTamPassword]\" maxlength=\"$cfg[dbUsuariosTamPassword]\"></td>\n";
         print "          </tr>\n";
         print "          <tr>\n";
-        print "          s<td>¿Quieres mantener la contraseña actual?</td>\n";
+        print "          <td>¿Quieres mantener la contraseña actual?</td>\n";
         print "            <td><input type=\"checkbox\" name=\"mantener\" value=\"si\"></td>\n";
         print "          </tr>\n";
         print "          <tr>\n";

@@ -48,6 +48,10 @@ if (!$resultado) {
     print "            <td>Correo:</td>\n";
     print "            <td><input type=\"text\" name=\"correo\" size=\"$cfg[formPersonasTamCorreo]\" maxlength=\"$cfg[formPersonasTamCorreo]\"></td>\n";
     print "          </tr>\n";
+    print "          <tr>\n";
+    print "            <td>Fecha de Nacimiento:</td>\n";
+    print "            <td><input type=\"date\" name=\"nacido\" size=\"$cfg[formPersonasTamNacido]\" maxlength=\"$cfg[formPersonasTamNacido]\"></td>\n";
+    print "          </tr>\n";
     print "        </tbody>\n";
     print "      </table>\n";
     print "\n";

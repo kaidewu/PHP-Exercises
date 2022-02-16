@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 
 // FUNCIONES ESPECÍFICAS DE LA BASE DE DATOS MYSQL

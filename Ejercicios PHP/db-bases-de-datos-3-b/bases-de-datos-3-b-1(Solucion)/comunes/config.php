@@ -40,6 +40,7 @@ $cfg["dbPersonasTamNombre"]    = 40;                        // Tamaño de la col
 $cfg["dbPersonasTamApellidos"] = 60;                        // Tamaño de la columna Personas > Apellidos
 $cfg["dbPersonasTamTelefono"]  = 10;                        // Tamaño de la columna Personas > Teléfono
 $cfg["dbPersonasTamCorreo"]    = 50;                        // Tamaño de la columna Personas > Correo
+$cfg["dbPersonasTamNacido"]    = 10;                        // Tamaño de la columna Personas > Correo
 
 // Tamaño de los controles en los formularios
 
@@ -47,6 +48,7 @@ $cfg["formPersonasTamNombre"]    = $cfg["dbPersonasTamNombre"];     // Tamaño d
 $cfg["formPersonasTamApellidos"] = $cfg["dbPersonasTamApellidos"];  // Tamaño de la caja de texto Personas > Apellidos
 $cfg["formPersonasTamTelefono"]  = $cfg["dbPersonasTamTelefono"];   // Tamaño de la caja de texto Personas > Teléfono
 $cfg["formPersonasTamCorreo"]    = $cfg["dbPersonasTamCorreo"];     // Tamaño de la caja de texto Personas > Correo
+$cfg["formPersonasTamNacido"]    = $cfg["dbPersonasTamNacido"];     // Tamaño de la caja de texto Personas > Correo
 
 // Número máximo de registros en las tablas (el valor 0 o negativo indica que no hay límite)
 

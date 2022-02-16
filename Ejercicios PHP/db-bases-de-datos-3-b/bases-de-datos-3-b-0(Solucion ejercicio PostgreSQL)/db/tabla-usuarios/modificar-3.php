@@ -106,7 +106,7 @@ if ($usuarioOk && $passwordOk && $nivelOk && $idOk) {
                 } else {
                     if ($manterner == "si"){
                         $consulta = "UPDATE $cfg[dbUsuariosTabla]
-                        SET usuario=:usuario, nivel=:nivel
+                        SET usuario=:usuario, nivel=:nivel,
                         WHERE id=:id";
 
                         $resultado = $pdo->prepare($consulta);

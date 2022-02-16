@@ -1,6 +1,6 @@
 <?php
 /**
- * @author Escriba aquí su nombre
+ * @author Kaide Wu
  */
 
 // OPCIONES DISPONIBLES PARA EL ADMINISTRADOR DE LA APLICACIÓN
