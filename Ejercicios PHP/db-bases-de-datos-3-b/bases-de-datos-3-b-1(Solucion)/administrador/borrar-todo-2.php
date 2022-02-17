@@ -17,7 +17,14 @@ if (!isset($_SESSION["conectado"]) || $_SESSION["nivel"] < NIVEL_ADMINISTRADOR) 
 $borrar = recoge("borrar");
 $demo   = recoge("demo");
 
-if ($borrar != "Sí") {
+if ($borrar == "personas"){
+    $cfg["BorrarPersonas"] = true;
+}elseif ($borrar == "usuarios"){
+    $cfg["BorrarUsuarios"] = true;
+}elseif ($borrar == "todo"){
+    $cfg["BorrarPersonas"] = true;
+    $cfg["BorrarUsuarios"] = true;
+}else{
     header("Location:index.php");
     exit;
 }

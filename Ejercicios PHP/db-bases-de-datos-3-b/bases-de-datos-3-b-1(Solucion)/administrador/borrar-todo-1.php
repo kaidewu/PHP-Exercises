@@ -22,10 +22,11 @@ print "      <p>También puede incluir en la base de datos unos datos de prueba.
 print "\n";
 print "      <p><label><input type=\"checkbox\" name=\"demo\" value=\"Sí\"> Incluir datos de prueba</label></p>\n";
 print "\n";
-print "      <p>Haga clic en Sí para borrar todos los datos.</p>\n";
+print "      <p>Elija una.</p>\n";
 print "      <p>\n";
-print "        <input type=\"submit\" name=\"borrar\" value=\"Sí\">\n";
-print "        <input type=\"submit\" name=\"borrar\" value=\"No\">\n";
+print "        <input type=\"submit\" name=\"borrar\" value=\"personas\">\n";
+print "        <input type=\"submit\" name=\"borrar\" value=\"usuarios\">\n";
+print "        <input type=\"submit\" name=\"borrar\" value=\"todo\">\n";
 print "      </p>\n";
 print "    </form>\n";
 

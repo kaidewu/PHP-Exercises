@@ -66,3 +66,9 @@ $cfg["rootPasswordModificable"] = false;                    // Contraseña del u
 // Método de envío de formularios
 
 $cfg["formMethod"] = "get";                                 // Valores posibles: get o post
+
+// Borrar Persona
+$cfg["BorrarPersonas"] = false;
+
+// Borrar Usuario
+$cfg["BorrarUsuarios"] = false;

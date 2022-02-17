@@ -42,62 +42,65 @@ function borraTodo()
     print "    <p>Sistema Gestor de Bases de Datos: SQLite.</p>\n";
     print "\n";
 
-    $consulta = "DROP TABLE IF EXISTS $cfg[dbUsuariosTabla]";
+    // Borrar y crear la tabla usuario
+    if ($cfg["BorrarPersonas"]){
+        $consulta = "DROP TABLE IF EXISTS $cfg[dbPersonasTabla]";
 
-    if (!$pdo->query($consulta)) {
-        print "    <p class=\"aviso\">Error al borrar la tabla Usuarios. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Tabla Usuarios borrada correctamente (si existía).</p>\n";
+        if (!$pdo->query($consulta)) {
+            print "    <p class=\"aviso\">Error al borrar la tabla Personas. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+        } else {
+            print "    <p>Tabla Personas borrada correctamente (si existía).</p>\n";
+        }
+        $consulta = "CREATE TABLE $cfg[dbPersonasTabla]  (
+            id INTEGER PRIMARY KEY,
+            nombre VARCHAR($cfg[dbPersonasTamNombre]) COLLATE NOCASE,
+            apellidos VARCHAR($cfg[dbPersonasTamApellidos]) COLLATE NOCASE,
+            telefono VARCHAR($cfg[dbPersonasTamTelefono]) COLLATE NOCASE,
+            correo VARCHAR($cfg[dbPersonasTamCorreo]) COLLATE NOCASE,
+            nacido DATE($cfg[dbPersonasTamNacido]) COLLATE NOCASE
+            )";
+
+        if (!$pdo->query($consulta)) {
+        print "    <p class=\"aviso\">Error al crear la tabla Personas. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+        } else {
+        print "    <p>Tabla Personas creada correctamente.</p>\n";
+        }
     }
-    print "\n";
 
-    $consulta = "DROP TABLE IF EXISTS $cfg[dbPersonasTabla]";
+    // Borrar y crear la tabla usuario
+    if ($cfg["BorrarUsuarios"]) {
+        $consulta = "DROP TABLE IF EXISTS $cfg[dbUsuariosTabla]";
 
-    if (!$pdo->query($consulta)) {
-        print "    <p class=\"aviso\">Error al borrar la tabla Personas. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Tabla Personas borrada correctamente (si existía).</p>\n";
-    }
-    print "\n";
+        if (!$pdo->query($consulta)) {
+            print "    <p class=\"aviso\">Error al borrar la tabla Usuarios. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
+        } else {
+            print "    <p>Tabla Usuarios borrada correctamente (si existía).</p>\n";
+        }
+        print "\n";
+        $consulta = "CREATE TABLE $cfg[dbUsuariosTabla]  (
+            id INTEGER PRIMARY KEY,
+            usuario VARCHAR($cfg[dbUsuariosTamUsuario]),
+            password VARCHAR($cfg[dbUsuariosTamPassword]),
+            nivel INTEGER
+            )";
 
-    $consulta = "CREATE TABLE $cfg[dbUsuariosTabla]  (
-                 id INTEGER PRIMARY KEY,
-                 usuario VARCHAR($cfg[dbUsuariosTamUsuario]),
-                 password VARCHAR($cfg[dbUsuariosTamPassword]),
-                 nivel INTEGER
-                 )";
-
-    if (!$pdo->query($consulta)) {
+        if (!$pdo->query($consulta)) {
         print "    <p class=\"aviso\">Error al crear la tabla Usuarios. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
+        } else {
         print "    <p>Tabla Usuarios creada correctamente.</p>\n";
         print "\n";
 
         $consulta = "INSERT INTO $cfg[dbUsuariosTabla]
-                     (id, usuario, password, nivel)
-                     VALUES (1, '$cfg[rootName]', '$cfg[rootPassword]', " . NIVEL_ADMINISTRADOR . ")";
+                        (id, usuario, password, nivel)
+                        VALUES (1, '$cfg[rootName]', '$cfg[rootPassword]', " . NIVEL_ADMINISTRADOR . ")";
 
         if (!$pdo->query($consulta)) {
             print "    <p class=\"aviso\">Error al insertar el registro de usuario. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
         } else {
             print "    <p>Registro de usuario creado correctamente.</p>\n";
         }
-    }
-    print "\n";
-
-    $consulta = "CREATE TABLE $cfg[dbPersonasTabla]  (
-                 id INTEGER PRIMARY KEY,
-                 nombre VARCHAR($cfg[dbPersonasTamNombre]) COLLATE NOCASE,
-                 apellidos VARCHAR($cfg[dbPersonasTamApellidos]) COLLATE NOCASE,
-                 telefono VARCHAR($cfg[dbPersonasTamTelefono]) COLLATE NOCASE,
-                 correo VARCHAR($cfg[dbPersonasTamCorreo]) COLLATE NOCASE,
-                 nacido DATE($cfg[dbPersonasTamNacido]) COLLATE NOCASE
-                 )";
-
-    if (!$pdo->query($consulta)) {
-        print "    <p class=\"aviso\">Error al crear la tabla Personas. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()[2]}</p>\n";
-    } else {
-        print "    <p>Tabla Personas creada correctamente.</p>\n";
+        }
+        print "\n";
     }
 }
 
